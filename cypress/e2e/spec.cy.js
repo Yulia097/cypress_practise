@@ -1,12 +1,20 @@
-/// <reference types = "Cypress" />
+/// <reference types="Cypress" />
+import Landing from '../../LandingPage';
+describe('WIkipedia', () => {
+  it('navigates to home page in CHineese', () => {
+    const wikiHome = new Landing();
+    wikiHome.visit();
 
-describe('template spec', () => {
-  it('passes', () => {
-    cy.visit('https://wikipedia.org');
-    cy.get('#js-link-box-en').click();
+    wikiHome.getLinks().should('have.length', 10);
+    // wikiHome.getNavBlock().find('a');
+    // wikiHome.getLinks().eq(4).click();
+  });
 
-    cy.get('#pt-createaccount-2');
-    cy.get('#pt-login-2');
-    cy.get('#vector-user-links-dropdown');
+  it('navigates to English version and checks header elements', () => {
+    const wikiHome = new Landing();
+    wikiHome.visit();
+
+    const homePage = wikiHome.clickEnglishLangBtn();
+    homePage.getLogo().click();
   });
 });
