@@ -1,7 +1,6 @@
 import BasePage from './Base.Page';
 import StoresPage from './StoresPage';
-import ReviewPage from './StoresPage';
-
+import DeliverPage from './DeliverPage';
 class Landing extends BasePage {
   visit() {
     cy.visit('https://www.moyo.ua/ua');
@@ -47,17 +46,14 @@ class Landing extends BasePage {
     );
   }
 
-  clickReviewBtn() {
-    this.getBtnReview().click();
-    return new ReviewPage();
+  clickStoresBtn() {
+    cy.get('ul.header_nav > li:nth-child(3)').click();
+    return new StoresPage();
   }
 
-  // getStoreslink() {
-  //   ('/html/body/div[1]/header/div[1]/div/div[2]/ul/li[3]/span');
-  // }
-
-  clickStoresBtn() {
-    cy.contains('Магазини').click(); // Click on first el containing 'Welcome'
+  clickGetDeliverisBtn() {
+    cy.get('ul.header_nav > li:nth-child(4)').click();
+    return new DeliverPage();
   }
 }
 
